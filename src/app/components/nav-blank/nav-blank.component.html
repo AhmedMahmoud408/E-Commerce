@@ -1,0 +1,43 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary" >
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="home"><img src="./assets/images/freshcart-logo.svg" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="home" routerLinkActive="active-link" >Home</a>
+          </li>
+          
+          <li class="nav-item">
+            <a class="nav-link" routerLink="products" routerLinkActive="active-link">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="categories" routerLinkActive="active-link">Categories</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="brands" routerLinkActive="active-link">Brands</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item me-2">
+            <a class="nav-link position-relative" routerLink="cart" routerLinkActive="cart-active-link" >Cart <i class="fa-solid fa-cart-shopping"></i>
+              <span class="position-absolute top-75 start-100 translate-middle badge rounded-pill active-link">
+                {{this._CartService.numOfItems}}
+              </span>
+            </a>
+          </li>
+          <li class="nav-item mx-2">
+            <a class="nav-link" routerLink="wishlist" routerLinkActive="cart-active-link" >Wishlist <i class="fa-regular fa-heart "></i></a>
+          </li>
+              <li class="nav-item ms-2">
+                <a class="nav-link cr" (click)="_AuthService.logout()"> 
+                  Signout
+                </a>
+              </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

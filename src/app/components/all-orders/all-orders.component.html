@@ -1,0 +1,34 @@
+<section class="w-75 mx-auto">
+
+   @if (userOlders) {
+    @for (item of userOlders; track $index) {
+        <div class="row bg-main-light my-3">
+            <div class="col-12">
+                <div class="py-3 fw-bolder ">
+                  <h1>TotalPrice:EGP {{item.totalOrderPrice}}</h1>
+                  <h2>Payment Method: {{item.paymentMethodType}}</h2>
+                  <h2>Shipping Details:</h2>
+                  <p>Address:{{item.shippingAddress.details}}</p>
+                  <p>Phone:{{item.shippingAddress.phone}}</p>
+                  <p>City:{{item.shippingAddress.city}}</p>
+                  <p> Order Created Date: {{item.createdAt|date}}</p>
+                </div>
+                
+            </div>
+        </div>
+    }
+
+   }@else {
+    <img src="./assets/images/orderdone.jpg" class="w-50 mx-auto d-block" alt="">
+   }
+
+
+
+    
+
+  
+
+
+
+    
+</section>

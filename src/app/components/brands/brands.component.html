@@ -1,0 +1,20 @@
+<section class="container my-5">
+
+    <div class="row g-3">
+        @for (item of brandList; track item._id) {
+        <div class="col-md-3 my-3">
+            <div class="product position-relative rounded-3 px-1 text-center cr">
+                <div [routerLink]="['/subBrands' , item._id]" class="cr">
+                    <img [src]="item.image" class="w-100 py-2" height="300px" alt="product.title">
+
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+
+    </div>
+
+</section>

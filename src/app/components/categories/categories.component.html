@@ -1,0 +1,21 @@
+<section class="container my-5">
+
+    <div class="row g-3">
+        @for (item of categoriesList; track item._id) {
+        <div class="col-md-4 my-3">
+            <div class="product position-relative rounded-3 px-1 text-center cr">
+                <div [routerLink]="['/subCategories' , item._id]" class="cr">
+                    <img [src]="item.image" class="w-100 py-2" height="300px" alt="product.title">
+
+                    <h6 class=""> {{item.name}}</h6>
+                </div>
+            </div>
+        </div>
+    }
+
+
+
+
+    </div>
+
+</section>

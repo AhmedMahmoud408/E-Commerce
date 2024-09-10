@@ -1,0 +1,64 @@
+<section>
+    <div class="  w-75 my-5 mx-auto">
+        <div class="border border-1 rounded-2 shadow border-secondary-subtle">
+            <h1 class="h2 p-2 text-main">Login</h1>
+            <form [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+                <div class="my-2 mx-3">
+                    <label for="email" class="fs-6 fw-medium ">Email:</label>
+                    <input [ngClass]="{
+                        'is-invalid':loginForm.get('email')?.errors  &&(loginForm.get('email')?.touched||loginForm.get('email')?.dirty)
+                    }" id="email" type="email" class="form-control" formControlName="email">
+                    @if (loginForm.get('email')?.errors &&(loginForm.get('email')?.touched)) {
+                    <div class=" alert alert-danger alert-w my-2  ">
+                        @if (loginForm.get('email')?.getError('required')) {
+                        <p class="m-0">Required</p>
+                        }
+                        @else if (loginForm.get('email')?.getError('email')) {
+                        <p class="m-0">The email you've entered is incorrect. </p>
+                        }
+                    </div>
+                    }
+                </div>
+                <div class="my-2 mx-3">
+                    <label for="password" class="fs-6 fw-medium ">Password:</label>
+                    <input [ngClass]="{
+                        'is-invalid':loginForm.get('password')?.errors  &&(loginForm.get('password')?.touched)
+                    }" id="password" type="password" class="form-control" formControlName="password">
+                    @if (loginForm.get('password')?.errors &&(loginForm.get('password')?.touched)) {
+                    <div class=" alert alert-danger alert-w my-2  ">
+                        @if (loginForm.get('password')?.getError('required')) {
+                        <p class="m-0">Required</p>
+                        }
+                        @else if (loginForm.get('password')?.getError('pattern')) {
+                        <p class="m-0">The password you've entered is incorrect.</p>
+                        }
+                    </div>
+                    }
+                </div>
+                @if (msgEroo) {
+                <p class="alert alert-danger alert-w my-2"> {{msgEroo}}</p>
+                }
+
+
+
+                <div class=" m-2 d-flex align-items-center justify-content-end ">
+
+                    <a routerLink="/forgot" class="link-primary me-3">Forgot password?</a>
+
+                    <button [disabled]="loginForm.invalid ||isLoading"
+                    class=" btn-main fs-6 fw-bold">
+                    @if (isLoading) {
+                    <span><i class="fas fa-spin fa-spinner"></i></span>
+                    }
+                    Log in
+                </button>
+                </div>
+
+            </form>
+
+        </div>
+
+
+
+    </div>
+</section>

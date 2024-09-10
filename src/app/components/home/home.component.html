@@ -1,0 +1,84 @@
+
+<!--! main slider-->
+<section class="my-3 container-fluid">
+    <div class="row g-0">
+        <div class="col-md-9">
+            <div class="">
+                <owl-carousel-o [options]="mainSliderOptions">
+                    <ng-template carouselSlide><img src="./assets/images/img1.avif" class="w-100" height="300px" alt=""></ng-template>
+                    <ng-template carouselSlide><img src="./assets/images/img2.avif" class="w-100" height="300px" alt=""></ng-template>
+                    <ng-template carouselSlide><img src="./assets/images/img3.avif" class="w-100" height="300px" alt=""></ng-template>
+                    <ng-template carouselSlide><img src="./assets/images/img4.avif" class="w-100" height="300px" alt=""></ng-template>
+                    <ng-template carouselSlide><img src="./assets/images/img5.avif" class="w-100" height="300px" alt=""></ng-template>
+                    <ng-template carouselSlide><img src="./assets/images/img6.avif" class="w-100" height="300px" alt=""></ng-template>
+                    <ng-template carouselSlide><img src="./assets/images/img7.avif" class="w-100" height="300px" alt=""></ng-template>  
+                  </owl-carousel-o>
+            </div>
+        </div>
+        <div class="col-md-3">
+                    <div>
+                        <img src="../../../assets/images/slider-image-3.jpeg" class="w-100" height="150px" alt="">
+                        <img src="../../../assets/images/slider-image-2.jpeg" class="w-100" height="150px" alt="">
+                    </div>
+        </div>
+    </div>
+</section>
+
+<!--!categories slider-->
+<section class="my-4 container-fluid">
+    <owl-carousel-o [options]="categoriesOptions">
+         
+        @for (cat of categoriesList; track cat._id) {
+
+            <ng-template carouselSlide >
+                <div [routerLink]="['/subCategories' , cat._id]" class=" cr mx-2 text-center">
+                    <img [src]="cat.image" [alt]="cat.name" class="cat-circle" >
+                <h3 class="text-secondary h6 fw-bold ">{{cat.name}}</h3>
+                </div>
+              </ng-template>
+        }
+    
+      </owl-carousel-o>
+</section>
+
+<!--! products-->
+<section class="container">
+
+    <input [(ngModel)]="text" type="search" placeholder="Search by name..." class="mx-auto w-50 form-control my-3">
+
+    <div class="row g-3">
+        @for (product of productlist|search : text; track product.id) {
+            <div class="col-md-2 my-3">
+                <div class="product position-relative rounded-3 px-1">
+                   <div [routerLink]="['/details' , product.id]" class="cr">
+                    <img [src]="product.imageCover" class="w-100 py-2" alt="product.title">
+                    
+                    <span class="badge small badge-main"> {{product.category.name}}</span>
+                    
+                
+                <h6 class="pt-2 fw-bold">{{product.title.split(" " ,2).join(" ")}}</h6>
+                <div class="d-flex justify-content-between align-items-center">
+                    <h6>EGP {{product.price}}</h6> 
+                <span class="badge text-bg-light">
+                    <i class="fas fa-star rating-color pe-1"></i>
+                    <span >{{product.ratingsAverage}}</span>
+                    <span class="text-muted ps-1">({{product.ratingsQuantity}})</span>
+                </span>
+                </div>
+                   </div>
+                   
+                   <span (click)="addWishlist(product.id)" class="badge text-bg-light cr">
+                    <i class="fa-heart fa-2x" [ngClass]="{'fa-solid text-danger': isFavorite(product.id), 'fa-regular': !isFavorite(product.id)}"></i>
+                </span>
+                    <button (click)="addCart(product.id)" class="btn-main mx-auto d-block fw-bold my-2">ADD TO CART</button>
+                </div>
+
+            </div>
+
+
+            
+        }
+
+    </div>
+
+</section>

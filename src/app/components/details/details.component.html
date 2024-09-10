@@ -1,0 +1,51 @@
+@if (productDetail) {
+
+    <section class="container my-3">
+        <div class="row align-items-center">
+            <div class="col-md-4">
+                <div>
+                    <owl-carousel-o [options]="imgSliderOptions">
+                        @for (image of productDetail.images; track $index) {
+                        <ng-template carouselSlide>
+                            <img [src]="image" class="w-100" [alt]="productDetail.title">
+                        </ng-template>
+                        }
+                    </owl-carousel-o>
+                </div>
+            </div>
+            <div class="col-md-8">
+    
+                <div class="position-relative rounded-3 px-1">
+                    <div>
+                        <span class="badge small badge-main me-1"> {{productDetail.brand.name}}</span>
+                        <span class="badge small badge-main mx-1"> {{productDetail.category.name}}</span>
+                        <span class="badge text-bg-light cr ms-1 ">
+                            <i class="fa-regular fa-heart fa-2x"></i>
+                        </span>
+                        <span class="badge text-bg-light position-absolute end-0 me-1">
+                            <i class="fas fa-star rating-color pe-1"></i>
+                            <span>{{productDetail.ratingsAverage}}</span>
+                            <span class="text-muted ps-1">({{productDetail.ratingsQuantity}})</span>
+                        </span>
+                        <h6 class="pt-2 fw-bold">{{productDetail.description}}</h6>
+                        <div>
+    
+                            <div class="w-fit my-2">
+                                <owl-carousel-o [options]="soldSliderOptions">
+                                    <ng-template carouselSlide> <i class="fa-solid fa-bag-shopping main-color"></i> Only
+                                        {{productDetail.quantity}} left in stock</ng-template>
+                                    <ng-template carouselSlide><i class="fa-solid fa-cart-shopping main-color"></i>
+                                        {{productDetail.sold}} sold out</ng-template>
+                                </owl-carousel-o>
+                            </div>
+                        </div>
+                        <h6><span class="h5 fw-bold">EGP {{productDetail.price}}</span> Inclusive of VAT </h6>
+                    </div>
+                    <button (click)="addCart(productDetail.id)" class="btn-main mx-auto d-block fw-bold my-2">ADD TO CART</button>
+                </div>
+    
+            </div>
+        </div>
+    </section>
+
+}

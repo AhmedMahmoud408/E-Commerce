@@ -1,0 +1,46 @@
+<section class="bg-main-light w-75 rounded-4 my-3 mx-auto p-3 shadow">
+    <form [formGroup]="shippingAddress" (ngSubmit)="orderSubmit(DebitPayment)">
+        <div class="">
+            <label class="fw-bolder" for="details">Address Details:</label>
+            <textarea formControlName="details" id="details" placeholder="Enter your full address" class="form-control"></textarea>
+            @if (shippingAddress.get('details')?.errors &&(shippingAddress.get('details')?.touched)) {
+                <div class=" alert alert-danger alert-w my-2  ">
+                    @if (shippingAddress.get('details')?.getError('required')) {
+                    <p class="m-0">Required</p>
+                    }
+                </div>
+                     }
+        </div>
+        <div class="">
+            <label class="fw-bolder"  for="phone">Phone:</label>
+            <input formControlName="phone" type="tel" id="phone" class="form-control">
+            @if (shippingAddress.get('phone')?.errors  &&(shippingAddress.get('phone')?.touched||shippingAddress.get('phone')?.dirty)) {
+                <div class=" alert alert-danger alert-w my-2">
+                    @if (shippingAddress.get('phone')?.getError('required')) {
+                        <p class="m-0">Required</p>
+                    }
+                    @else if (shippingAddress.get('phone')?.getError('pattern')) {
+                        <p class="m-0">accept only egypt phone numbers </p>
+                    }
+                </div>
+            }
+        </div>
+        <div class="">
+            <label class="fw-bolder"  for="city">Your City:</label>
+            <input formControlName="city" type="text" id="city" class="form-control">
+            @if (shippingAddress.get('city')?.errors &&(shippingAddress.get('city')?.touched)) {
+            <div class=" alert alert-danger alert-w my-2  ">
+                @if (shippingAddress.get('city')?.getError('required')) {
+                <p class="m-0">Required</p>
+                }
+            </div>
+                 }
+        </div>
+        
+
+        <button (click)="DebitPayment=1" class="btn btn-success mx-3 my-4"> <i class="fa-regular fa-credit-card fa-2xl"></i> Debit/Credit Card</button>
+        <button (click)="DebitPayment=2"class="btn btn-outline-success mx-3 my-4 "> <i class="fa-solid fa-money-bill-1 fa-2xl"></i> Cash On Delivery</button>
+
+    </form>
+</section>
+

@@ -1,0 +1,24 @@
+<section class="container m-2">
+    @for (item of wishlistDetails; track $index) {
+
+        <div class="row align-items-center bg-main-light my-3 overflow-hidden">
+            <div class="col-md-3">
+                <div class="py-3 ">
+                    <img [src]="item.imageCover" class="w-100" alt="">
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class=" d-flex align-items-center justify-content-between">
+                    <div class="">
+                        <h3 class="h5">  {{item.title}}</h3>
+                        <h4 class="h6 fw-bolder">Price: EGP {{item.price}}</h4>
+                        <span (click)="removeWishItem(item._id)" class="btn  btn-danger"><i class="fa-solid fa-trash-can fa-xl "></i></span>
+                    </div>
+                    <div class="">
+                        <button (click)="addCart(item._id)" class="btn-main mx-auto d-block fw-bold my-2">ADD TO CART</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
